@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Отправка данных</title>
+</head>
+
+<body>
+    <h2>Отправка данных с iPhone</h2>
+    <button onclick="sendData()">Отправить данные</button>
+    <pre id="status"></pre>
+    <script>
+        function sendData() {
+            let data = {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                timestamp: new Date().toISOString()
+            };
+            fetch("https://iphone-mdm.onrender.com/upload?data=" + encodeURIComponent(JSON.stringify(data)))
+                .then(res => res.json())
+                .then(res => {
+                    document.getElementById('status').innerText = "Данные отправлены: " + JSON.stringify(res);
+                })
+                .catch(err => {
+                    document.getElementById('status').innerText = "Ошибка: " + err;
+                });
+        }
+    </script>
+</body>
+
+</html>
