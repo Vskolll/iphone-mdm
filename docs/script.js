@@ -9,8 +9,8 @@ async function loadData() {
         let tbody = document.getElementById("app-list");
         tbody.innerHTML = "";
 
-        if (apps.length === 0) {
-            tbody.innerHTML = "<tr><td colspan='4'>Нет данных. Установите профиль на iPhone.</td></tr>";
+        if (!apps || apps.length === 0) {
+            tbody.innerHTML = "<tr><td colspan='4'>Нет данных. Установите профиль и отправьте данные.</td></tr>";
             return;
         }
 
